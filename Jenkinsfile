@@ -1,11 +1,15 @@
-# We need a schedule based on cron
-
-# min hour day month day_of_week
-* * * * *
-# will run every minute on the minute
-
-# We also need a repository with a Jenkinsfile
-# in it:
-
-https://github.com/robertstarmer/jenkins-git.git
-
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    sh 'for n in `seq 1 10`; do echo $n; sleep 1; done'
+                }
+                timeout(time: 1, unit: 'MINUTES') {
+                    sh 'for n in `seq 1 50`; do echo $n; sleep 1; done'
+                }
+            }
+        }
+    }
+}
